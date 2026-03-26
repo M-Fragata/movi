@@ -2,10 +2,12 @@ export async function memoGemini(userMessage){
 
     try {
         
+        console.log(userMessage)
+
         const response = await fetch("http://localhost:3333/memorandos", {
             method: "POST",
             headers: {"Content-type": "application/json"},
-            body: JSON.stringify({message: userMessage})
+            body: JSON.stringify({userMessage})
         })
 
         if(!response.ok) {
