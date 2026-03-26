@@ -1,19 +1,18 @@
-import { GoogleGenerativeAI } from "@google/generative-ai"
+import { GoogleGenAI } from "@google/genai"
 
-const memoAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-
-const model = memoAI.getGenerativeModel({ model: "gemini-3-flash-preview" })
+const memoAI = new GoogleGenAI(process.env.GEMINI_API_KEY)
 
 export class MemoController {
 
     async create(req, res) {
 
         try {
-
             const { userMessage } = req.body
 
+            console.log(userMessage)
+
             const memoPrompt = `
-                Aja como um assistente especializado em gestão de pessoal. Processe o texto de movimentação que enviarei a seguir, seguindo rigorosamente estas diretrizes:
+                                Aja como um assistente especializado em gestão de pessoal. Processe o texto de movimentação que enviarei a seguir, seguindo rigorosamente estas diretrizes:
 
                 1- Cruzamento de Dados (Matrícula):
 
@@ -48,9 +47,15 @@ export class MemoController {
                 ${userMessage}
             `
 
-            const result = await model.generateContent(memoPrompt)
+            const response = await memoAI.models.generateContent({
+                model: "gemini-3-flash-preview",
+                contents: [{
+                    role: "user",
+                    parts: [{ text: memoPrompt }]
+                }]
+            })
 
-            const responseText = result.response.text()
+            const responseText = response.text
 
             return res.status(200).json({
                 message: "Processamento concluído",
@@ -59,9 +64,7 @@ export class MemoController {
 
         } catch (error) {
             console.error("Erro no processamento do GEMINI", error)
-            return res.status(500).json({error: "Erro interno do servidor ao processar o memorando."})
+            return res.status(500).json({ error: "Erro interno do servidor ao processar o memorando." })
         }
-
     }
-
 }
