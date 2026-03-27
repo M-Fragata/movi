@@ -1,8 +1,6 @@
 export async function memoGemini(userMessage){
 
     try {
-        
-        console.log(userMessage)
 
         const response = await fetch("http://localhost:3333/memorandos", {
             method: "POST",
