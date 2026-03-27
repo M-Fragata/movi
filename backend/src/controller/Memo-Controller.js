@@ -34,7 +34,7 @@ export class MemoController {
                 4- Formato das colunas:
 
                     - Memorandos: [Expedição, início, matrícula, nome, cargo, função, situação (TRANSF), CÓD LOTAÇÃO, Destino, CARGA HORÁRIA, TURNO(MANHÃ(SE INFORMADO)/TARDE(SE INFORMADO)/INTEGRAL(CASO SEJA 40 HORAS SEMANAIS)/A COMBINAR(NA DÚVIDA DE QUAL SEJA)), OBSERVAÇÃO]
-                    - Encaminhamentos: [Expedição, início, matrícula, nome, cargo, situação (TRANSF), CÓD LOTAÇÃO, Destino, CARGA HORÁRIA, TURNO(MANHÃ(SE INFORMADO)/TARDE(SE INFORMADO)/INTEGRAL(CASO SEJA 40 HORAS SEMANAIS)/A COMBINAR(NA DÚVIDA DE QUAL SEJA)), OBSERVAÇÃO]
+                    - Encaminhamentos: [Expedição, início, matrícula, nome, cargo, situação (TRANSF), CÓD LOTAÇÃO, Destino, CARGA HORÁRIA(ex: 40 HORAS SEMANAIS), TURNO(MANHÃ(SE INFORMADO)/TARDE(SE INFORMADO)/INTEGRAL(CASO SEJA 40 HORAS SEMANAIS)/A COMBINAR(NA DÚVIDA DE QUAL SEJA)), OBSERVAÇÃO]
                     - Expedição: Use a data de hoje: ${new Date().toLocaleDateString('pt-BR')}.
 
                 5- E-MAILS:
@@ -53,8 +53,37 @@ export class MemoController {
                     Retorne estritamente um objeto JSON com esta estrutura:
 
                         {
-                            "memorandos": [],
-                            "encaminhamentos": [],
+                            "memorandos": [
+                            {
+                                expedicao: "",
+                                inicio: "",
+                                matricula: "",
+                                nome: "",
+                                cargo: "",
+                                funcao: "",
+                                situacao: "",
+                                codLotacao: "",
+                                destino: "",
+                                cargaHoraria: "",
+                                turno: "",
+                                observacao: ""
+                            }
+                            ],
+                            "encaminhamentos": [
+                            {
+                                expedicao: "",
+                                inicio: "",
+                                matricula: "",
+                                nome: "",
+                                cargo: "",
+                                situacao: "",
+                                codLotacao: "",
+                                destino: "",
+                                cargaHoraria: "",
+                                turno: "",
+                                observacao: ""
+                            }
+                            ],
                             "emails": []
                         }
 
