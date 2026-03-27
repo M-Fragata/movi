@@ -17,7 +17,9 @@ const sheetHeadersMemorando = ['Expedição','Início','Matrícula','Nome','Carg
 const sheetHeadersEncaminhamento = ['Expedição','Início','Matrícula','Nome','Cargo','Situação','Cód Lotação','Destino','Carga Horária','Turno','Observação']
 
 const normalizeKey = (object, targetKey) => {
-  const found = Object.keys(object).find(k => k.toLowerCase() === targetKey.toLowerCase())
+  const normalizeString = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '').toLowerCase()
+  const normalizedTarget = normalizeString(targetKey)
+  const found = Object.keys(object).find(k => normalizeString(k) === normalizedTarget)
   return found || null
 }
 
@@ -74,7 +76,7 @@ const createSpreadsheet = (container, items, sectionName) => {
 
   btnCopyAll.addEventListener('click', async () => {
     try {
-      let tableText = sheetHeaders.join('\t') + '\n'
+      let tableText = ''
       Array.from(tbody.rows).forEach(row => {
         const rowText = Array.from(row.cells).map(cell => cell.textContent).join('\t')
         tableText += rowText + '\n'
