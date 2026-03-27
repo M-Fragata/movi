@@ -11,13 +11,35 @@
 </head>
 <body>
     <header>
-
+        <h1>Movi AI Memorandos</h1>
+        <p>Gere memorandos, encaminhamentos e e-mails com um clique.</p>
     </header>
     <main>
-        <textarea name="" id="message">
+        <section class="input-area">
+            <label for="message">Texto de entrada</label>
+            <textarea id="message" placeholder="Cole aqui o conteúdo para formatar..."></textarea>
+            <button type="button" id="format">Formatar</button>
+        </section>
 
-        </textarea>
-        <button type="button" id="format">Formatar</button>
+        <div id="loading" class="loading hidden" role="status" aria-live="polite">
+            <div class="spinner"></div>
+            <span>Processando... aguarde</span>
+        </div>
+
+        <section id="memorandosSection" class="resultado-section hidden">
+            <h2>Memorandos</h2>
+            <div id="memorandosList" class="cards-list"></div>
+        </section>
+
+        <section id="encaminhamentosSection" class="resultado-section hidden">
+            <h2>Encaminhamentos</h2>
+            <div id="encaminhamentosList" class="cards-list"></div>
+        </section>
+
+        <section id="emailsSection" class="resultado-section hidden">
+            <h2>E-mails</h2>
+            <div id="emailsList" class="cards-list"></div>
+        </section>
     </main>
 </body>
 </html>
