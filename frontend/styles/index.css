@@ -66,11 +66,12 @@ main {
 .resultado-section {
   margin-top: 1rem; border: 1px solid var(--border); border-radius: 12px;
   background: #17181b; padding: .8rem;
+  overflow-x: auto; overflow-y: visible;
 }
 .resultado-section h2 {
   margin: 0 0 .7rem; color: var(--accent-2); text-transform: uppercase; letter-spacing: .04em;
 }
-.cards-list { display: flex; flex-direction: column; gap: .75rem; }
+.cards-list { display: flex; flex-direction: column; gap: .75rem; min-width: 0; }
 .card-item {
   background: #1c1d21; border: 1px solid var(--border); border-radius: 10px; padding: .7rem;
   display: flex; justify-content: space-between; align-items:flex-start;
