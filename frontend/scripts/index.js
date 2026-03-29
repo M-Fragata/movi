@@ -7,6 +7,7 @@ const loading = document.querySelector('#loading')
 const memorandosSection = document.querySelector('#memorandosSection')
 const encaminhamentosSection = document.querySelector('#encaminhamentosSection')
 const emailsSection = document.querySelector('#emailsSection')
+const downloadButton = document.querySelector('.download-btn')
 
 const hideAllSections = () => {
   memorandosSection.classList.add('hidden')
@@ -24,6 +25,8 @@ const setLoading = (state) => {
   }
 }
 
+let data = ""
+
 button.addEventListener('click', async () => {
   const userMessage = textArea.value.trim()
   if (!userMessage) return
@@ -35,6 +38,9 @@ button.addEventListener('click', async () => {
     const result = await memoGemini(userMessage)
     console.log(result)
     memorandosResult(result)
+
+    data = result
+
   } catch (error) {
     console.error('Erro ao processar:', error)
   } finally {
