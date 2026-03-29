@@ -1,9 +1,12 @@
+import { generatePdf } from "./generatePdf.js"
+
 const memorandosList = document.querySelector('#memorandosList')
 const encaminhamentosList = document.querySelector('#encaminhamentosList')
 const emailsList = document.querySelector('#emailsList')
 const memorandosSection = document.querySelector('#memorandosSection')
 const encaminhamentosSection = document.querySelector('#encaminhamentosSection')
 const emailsSection = document.querySelector('#emailsSection')
+
 
 const formatObjectToText = (obj) => {
   if (typeof obj !== 'object' || obj === null) return String(obj)
@@ -13,8 +16,8 @@ const formatObjectToText = (obj) => {
     .join('\n')
 }
 
-const sheetHeadersMemorando = ['Expedição','Início','Matrícula','Nome','Cargo','Função','Situação','Cód Lotação','Destino','Carga Horária','Turno','Observação']
-const sheetHeadersEncaminhamento = ['Expedição','Início','Matrícula','Nome','Cargo','Situação','Cód Lotação','Destino','Carga Horária','Turno','Observação']
+const sheetHeadersMemorando = ['Expedição','Início','Matrícula','Nome','Cargo','Função','Situação','Cód Lotação','Destino','Carga Horária','Turno','Observação','pdf']
+const sheetHeadersEncaminhamento = ['Expedição','Início','Matrícula','Nome','Cargo','Situação','Cód Lotação','Destino','Carga Horária','Turno','Observação','pdf']
 
 const normalizeKey = (object, targetKey) => {
   const normalizeString = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '').toLowerCase()
@@ -39,42 +42,7 @@ const createSpreadsheet = (container, items, sectionName) => {
   btnCopyAll.type = 'button'
   btnCopyAll.textContent = 'Copiar Todos'
 
-  const table = document.createElement('table')
-  table.className = 'sheet-table'
-
-  const thead = table.createTHead()
-  const headRow = thead.insertRow()
-
-  const sheetHeaders = sectionName === 'Encaminhamento' ? sheetHeadersEncaminhamento : sheetHeadersMemorando
-
-  sheetHeaders.forEach(text => {
-    const th = document.createElement('th')
-    th.textContent = text
-    headRow.appendChild(th)
-  })
-
-  const tbody = table.createTBody()
-
-  items.forEach((item, index) => {
-    const row = tbody.insertRow()
-    row.className = index % 2 === 0 ? 'row-even' : 'row-odd'
-
-    const sheetHeaders = sectionName === 'Encaminhamento' ? sheetHeadersEncaminhamento : sheetHeadersMemorando
-
-    sheetHeaders.forEach((header) => {
-      const cell = row.insertCell()
-      const key = normalizeKey(item, header)
-      let value = key ? item[key] : ''
-
-      if (header === 'Expedição' && (!value || String(value).trim() === '')) {
-        value = getTodayDate()
-      }
-
-      cell.textContent = value ?? ''
-    })
-  })
-
-  btnCopyAll.addEventListener('click', async () => {
+    btnCopyAll.addEventListener('click', async () => {
     try {
       let tableText = ''
       Array.from(tbody.rows).forEach(row => {
@@ -98,8 +66,76 @@ const createSpreadsheet = (container, items, sectionName) => {
     }
   })
 
+
+  const btnDownloadAll = document.createElement('button')
+  btnDownloadAll.className = 'download-all-btn'
+  btnDownloadAll.type = 'button'
+  btnDownloadAll.textContent = 'Gerar PDFs'
+
+    btnDownloadAll.addEventListener('click', async () => {
+      try {
+        
+        const batchData = {
+          isBatch: true,
+          tipo: sectionName,
+          itens: items
+        }
+
+        await generatePdf(batchData)
+
+      } catch (error) {
+        console.error('Erro ao gerar PDFs:', error)
+      }
+    })
+
+
+  const table = document.createElement('table')
+  table.className = 'sheet-table'
+
+  const thead = table.createTHead()
+  const headRow = thead.insertRow()
+
+  const sheetHeaders = sectionName === 'Encaminhamento' ? sheetHeadersEncaminhamento : sheetHeadersMemorando
+
+  sheetHeaders.forEach(text => {
+    const th = document.createElement('th')
+    th.textContent = text
+    headRow.appendChild(th)
+  })
+
+  const tbody = table.createTBody()
+
+  items.forEach((item, index) => {
+    const row = tbody.insertRow()
+    row.className = index % 2 === 0 ? 'row-even' : 'row-odd'
+
+    sheetHeaders.forEach((header) => {
+      const cell = row.insertCell()
+      
+      // Lógica especial para a coluna PDF
+      if (header === 'pdf') {
+        const btnSinglePdf = document.createElement('button')
+        btnSinglePdf.textContent = 'PDF'
+        btnSinglePdf.className = 'pdf-table-btn' 
+        btnSinglePdf.type = 'button'
+        btnSinglePdf.onclick = () => generatePdf(item)
+        cell.appendChild(btnSinglePdf)
+      } else {
+        const key = normalizeKey(item, header)
+        let value = key ? item[key] : ''
+
+        if (header === 'Expedição' && (!value || String(value).trim() === '')) {
+          value = getTodayDate()
+        }
+        cell.textContent = value ?? ''
+      }
+    })
+  })
+
+
   table.appendChild(tbody)
   wrapper.appendChild(btnCopyAll)
+  wrapper.appendChild(btnDownloadAll)
   wrapper.appendChild(table)
   container.appendChild(wrapper)
 }
