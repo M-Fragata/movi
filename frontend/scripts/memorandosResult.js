@@ -11,13 +11,13 @@ const emailsSection = document.querySelector('#emailsSection')
 const formatObjectToText = (obj) => {
   if (typeof obj !== 'object' || obj === null) return String(obj)
   return Object.entries(obj)
-    .filter(([k,v]) => v !== undefined && v !== null && String(v).trim() !== '')
+    .filter(([k, v]) => v !== undefined && v !== null && String(v).trim() !== '')
     .map(([key, value]) => `${key}: ${value}`)
     .join('\n')
 }
 
-const sheetHeadersMemorando = ['Expedição','Início','Matrícula','Nome','Cargo','Função','Situação','Cód Lotação','Destino','Carga Horária','Turno','Observação','pdf']
-const sheetHeadersEncaminhamento = ['Expedição','Início','Matrícula','Nome','Cargo','Situação','Cód Lotação','Destino','Carga Horária','Turno','Observação','pdf']
+const sheetHeadersMemorando = ['Expedição', 'Início', 'Matrícula', 'Nome', 'Cargo', 'Função', 'Situação', 'Cód Lotação', 'Destino', 'Carga Horária', 'Turno', 'Observação', 'pdf']
+const sheetHeadersEncaminhamento = ['Expedição', 'Início', 'Matrícula', 'Nome', 'Cargo', 'Situação', 'Cód Lotação', 'Destino', 'Carga Horária', 'Turno', 'Observação', 'pdf']
 
 const normalizeKey = (object, targetKey) => {
   const normalizeString = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '').toLowerCase()
@@ -42,7 +42,7 @@ const createSpreadsheet = (container, items, sectionName) => {
   btnCopyAll.type = 'button'
   btnCopyAll.textContent = 'Copiar Todos'
 
-    btnCopyAll.addEventListener('click', async () => {
+  btnCopyAll.addEventListener('click', async () => {
     try {
       let tableText = ''
       Array.from(tbody.rows).forEach(row => {
@@ -72,21 +72,21 @@ const createSpreadsheet = (container, items, sectionName) => {
   btnDownloadAll.type = 'button'
   btnDownloadAll.textContent = 'Gerar PDFs'
 
-    btnDownloadAll.addEventListener('click', async () => {
-      try {
-        
-        const batchData = {
-          isBatch: true,
-          tipo: sectionName,
-          itens: items
-        }
+  btnDownloadAll.addEventListener('click', async () => {
+    try {
 
-        await generatePdf(batchData)
-
-      } catch (error) {
-        console.error('Erro ao gerar PDFs:', error)
+      const batchData = {
+        isBatch: true,
+        tipo: sectionName,
+        itens: items
       }
-    })
+
+      await generatePdf(batchData)
+
+    } catch (error) {
+      console.error('Erro ao gerar PDFs:', error)
+    }
+  })
 
 
   const table = document.createElement('table')
@@ -111,12 +111,12 @@ const createSpreadsheet = (container, items, sectionName) => {
 
     sheetHeaders.forEach((header) => {
       const cell = row.insertCell()
-      
+
       // Lógica especial para a coluna PDF
       if (header === 'pdf') {
         const btnSinglePdf = document.createElement('button')
         btnSinglePdf.textContent = 'PDF'
-        btnSinglePdf.className = 'pdf-table-btn' 
+        btnSinglePdf.className = 'pdf-table-btn'
         btnSinglePdf.type = 'button'
         btnSinglePdf.onclick = () => generatePdf(item)
         cell.appendChild(btnSinglePdf)
@@ -188,8 +188,49 @@ const createCard = (container, title, body) => {
     }
   })
 
+  const sendMailButton = document.createElement('button')
+  sendMailButton.className = 'email-btn'
+  sendMailButton.type = 'button'
+  sendMailButton.textContent = 'Enviar'
+
+  sendMailButton.addEventListener('click', async () => {
+    try {
+
+      sendMailButton.textContent = 'Enviando...'
+      sendMailButton.disabled = true
+
+      const payload = {
+        assunto: body.assunto,
+        corpo: body.corpo,
+        ...body.dadosServidor
+      }
+
+      const response = await fetch('http://localhost:3333/sendmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      alert('E-mail enviado com sucesso!')
+      sendMailButton.textContent = 'Enviado'
+
+    } catch (error) {
+      console.error('Erro ao enviar e-mail:', error)
+      alert('Erro ao enviar e-mail.')
+      sendMailButton.textContent = 'Enviar'
+      sendMailButton.disabled = false
+    }
+  })
+
   card.appendChild(content)
   card.appendChild(button)
+  card.appendChild(sendMailButton)
   container.appendChild(card)
 }
 
@@ -220,6 +261,32 @@ export function memorandosResult(data) {
 
   populateSection(data.memorandos || [], memorandosList, memorandosSection, 'Memorando')
   populateSection(data.encaminhamentos || [], encaminhamentosList, encaminhamentosSection, 'Encaminhamento')
-  populateSection(data.emails || [], emailsList, emailsSection, 'E-mail')
+
+
+  const mailsCompletos = (data.emails || []).map((email, index) => {
+
+    const memorandoCount = (data.memorandos || []).length
+
+    let dadosRelacionados = {}
+    let tipoDoc = ''
+
+    if (index < memorandoCount) {
+      dadosRelacionados = data.memorandos[index]
+      tipoDoc = 'Memorando'
+    } else {
+      dadosRelacionados = data.encaminhamentos[index - memorandoCount]
+      tipoDoc = 'Encaminhamento'
+    }
+
+    return {
+      ...email,
+      dadosServidor: dadosRelacionados,
+      tipoDocumento: tipoDoc
+    }
+
+
+  })
+
+  populateSection(mailsCompletos || [], emailsList, emailsSection, 'E-mail')
 }
 
