@@ -32,7 +32,7 @@ export async function generateMemorandoPDF(dados) {
                 </div>
                 <div class="content">
                     <p>${servidor.expedicao}</p>
-                    <p>MEMORANDO Nº ____/2026</p>
+                    <p>${servidor.tipoDocumento === "Encaminhamento" ? "ENCAMINHAMENTO" : "MEMORANDO"} Nº ____/2026</p>
                     <p>Destino: ${servidor.destino}</p>
                     <p>Prezado(a),</p>
                     <p>Pelo presente, encaminhamo a V.Sª o(a) funcionário(a) <strong>${servidor.nome}</strong>, 
