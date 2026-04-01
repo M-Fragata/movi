@@ -16,8 +16,8 @@ const formatObjectToText = (obj) => {
     .join('\n')
 }
 
-const sheetHeadersMemorando = ['Expedição', 'Início', 'Matrícula', 'Nome', 'Cargo', 'Função', 'Situação', 'Cód Lotação', 'Destino', 'Carga Horária', 'Turno', 'Observação', 'pdf']
-const sheetHeadersEncaminhamento = ['Expedição', 'Início', 'Matrícula', 'Nome', 'Cargo', 'Situação', 'Cód Lotação', 'Destino', 'Carga Horária', 'Turno', 'Observação', 'pdf']
+const sheetHeadersMemorando = ['Memorando','Expedição', 'Início', 'Matrícula', 'Nome', 'Cargo', 'Função', 'Situação', 'Cód Lotação', 'Destino', 'Carga Horária', 'Turno', 'Observação', 'pdf']
+const sheetHeadersEncaminhamento = ['Encaminhamento','Expedição', 'Início', 'Matrícula', 'Nome', 'Cargo', 'Situação', 'Cód Lotação', 'Destino', 'Carga Horária', 'Turno', 'Observação', 'pdf']
 
 const normalizeKey = (object, targetKey) => {
   const normalizeString = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '').toLowerCase()
@@ -122,7 +122,8 @@ const createSpreadsheet = (container, items, sectionName) => {
         cell.appendChild(btnSinglePdf)
       } else {
         const key = normalizeKey(item, header)
-        let value = key ? item[key] : ''
+        
+        let value = (key !== null && item[key] !== null && item[key] !== undefined) ? item[key] : ''
 
         if (header === 'Expedição' && (!value || String(value).trim() === '')) {
           value = getTodayDate()
@@ -147,7 +148,20 @@ const createCard = (container, title, body) => {
   const content = document.createElement('div')
   content.className = 'card-content'
 
-  if (typeof body === 'string') {
+  if (body.assunto && body.corpo) {
+    const h4 = document.createElement('h4')
+    h4.textContent = body.assunto
+    h4.style.marginBottom = '10px'
+    
+    const p = document.createElement('p')
+    p.textContent = body.corpo
+    p.style.whiteSpace = 'pre-wrap' // Mantém quebras de linha se houver
+    
+    content.appendChild(h4)
+    content.appendChild(p)
+  }
+
+  else if (typeof body === 'string') {
     const p = document.createElement('p')
     p.textContent = body
     content.appendChild(p)
@@ -168,7 +182,9 @@ const createCard = (container, title, body) => {
   button.type = 'button'
   button.textContent = 'Copiar'
 
-  const textToCopy = title + '\n' + (typeof body === 'string' ? body : formatObjectToText(body))
+  const textToCopy = body.assunto && body.corpo 
+    ? `Assunto: ${body.assunto}\n\n${body.corpo}`
+    : title + '\n' + formatObjectToText(body)
 
   button.addEventListener('click', async () => {
     try {
@@ -181,10 +197,6 @@ const createCard = (container, title, body) => {
       }, 1400)
     } catch (err) {
       console.error('Erro ao copiar:', err)
-      button.textContent = 'Erro'
-      setTimeout(() => {
-        button.textContent = 'Copiar'
-      }, 1400)
     }
   })
 
