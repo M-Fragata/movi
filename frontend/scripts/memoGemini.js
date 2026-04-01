@@ -1,11 +1,11 @@
-export async function memoGemini(userMessage){
+export async function memoGemini(userMessage, memoNumber, encaNumber){
 
     try {
 
         const response = await fetch("http://localhost:3333/memorandos", {
             method: "POST",
             headers: {"Content-type": "application/json"},
-            body: JSON.stringify({userMessage})
+            body: JSON.stringify({userMessage, memoNumber, encaNumber})
         })
 
         if(!response.ok) {
@@ -13,7 +13,7 @@ export async function memoGemini(userMessage){
         }
 
         const memorandos = await response.json()
-
+        console.log("Memorandos recebidos do backend:", memorandos)
         return memorandos
 
     } catch (error) {
