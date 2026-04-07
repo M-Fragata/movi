@@ -25,7 +25,7 @@ export class MemoController {
 
                     Você deve mapear as informações do texto para os termos exatos das listas fornecidas. Se o termo no texto for ligeiramente diferente, escolha o correspondente mais próximo SEMPRE dentro da lista correta:
 
-                    - Campo 'destino': Use EXCLUSIVAMENTE a lista configBase.unidades ${configBase.unidades}.
+                    - Campo 'destino': Use EXCLUSIVAMENTE a lista configBase.unidades ${JSON.stringify(configBase.unidades.map(u => u.nome))}, caso não seja encontrada a unidade escolar, retorne como "Não encontrada!".
 
                     - Campo 'cargo': Use EXCLUSIVAMENTE a lista configBase.cargos ${configBase.cargos}. Nunca use termos desta lista no campo de função.
                         * Se o texto diz "Instrutor Eixo IV Tecnologia", o cargo É "INSTRUTOR INTEGRADOR – EIXO 4 – TECNOLOGIA".
@@ -121,6 +121,8 @@ export class MemoController {
                             ],
                             "emails": [
                             {
+                                "destino": (unidade de destino do servidor, utilize o nome da unidade de destino informado no campo destino do memorando/encaminhamento para definir o email, cruzando com a lista ${configBase.unidades[0].nome} para encontrar o email correspondente),
+                                "email": (email da unidade escolar, com base no destino cruze o nome da unidade de destino com esta lista completa de objetos: ${JSON.stringify(configBase.unidades)} e extraia o campo "email" correspondente.
                                 "tipo": "Entrada / Saída",
                                 "funcionario": "NOME DO FUNCIONARIO",
                                 "assunto": "Entrada / Saída - NOME DO FUNCIONARIO",
@@ -131,11 +133,11 @@ export class MemoController {
 
                     TEXTO PARA PROCESSAR: ${userMessage} utilize a partir do número: ${memoNumber} para os memorandos e a partir do número: ${encaNumber} para os encaminhamentos.
 
-                    Responda APENAS o objeto JSON, sem nenhum texto introdutório ou explicativo, e sem utilizar blocos de código (markdown code blocks).
+                    Responda APENAS o objeto JSON, sem nenhum texto introdutório ou explicativo, e sem utilizar blocos de código (markdown code blocks), nunca retorne informação vazia, caso não seja encontrado retorne como "Não encontrado!".
             `
 
             const response = await memoAI.models.generateContent({
-                model: "gemini-2.0-flash-lite",
+                model: "gemini-3-flash-preview",
                 generationConfig: {
                     responseMimeType: "application/json",
                 },
@@ -151,7 +153,7 @@ export class MemoController {
 
                 const jsonMatch = responseText.match(/\{[\s\S]*\}/)
 
-                if(jsonMatch) {
+                if (jsonMatch) {
                     const cleanJson = jsonMatch[0];
                     const jsonData = JSON.parse(cleanJson);
                     return res.status(200).json(jsonData);
@@ -161,9 +163,9 @@ export class MemoController {
 
             } catch (parseError) {
                 console.error("Erro ao converter string da IA em JSON:", responseText);
-                return res.status(500).json({ 
+                return res.status(500).json({
                     error: "A IA retornou um formato inválido.",
-                    raw: responseText 
+                    raw: responseText
                 });
             }
 
