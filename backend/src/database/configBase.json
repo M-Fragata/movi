@@ -1,93 +1,321 @@
 {
   "unidades": [
-    "CAIC ELOMIR SILVA",
-    "CASA DA CRIANCA DE INOÃ",
-    "CASA DA CRIANÇA DE ITAIPUAÇU",
-    "CEIM DÓ RÉ MI HAROLDO SANT ANNA SANTINI",
-    "CEIM MARILZA DA CONCEIÇÃO ROCHA MEDINA",
-    "CEIM NELSON MANDELA",
-    "CEIM PINGUINHOS DE LUZ",
-    "CEIM PROFESSOR JOSÉ CARLOS DE ALMEIDA E SILVA",
-    "CEIM PROFESSORA LUCIANA PEIXOTO DE OLIVEIRA VIANNA",
-    "CEIM PROFESSORA ONDINA DE OLIVEIRA COELHO",
-    "CEIM RECANTO DA AMIZADE",
-    "CEIM SIDNÉIA DA SILVA COSTA",
-    "CEIM VALÉRIA RAMOS PASSOS",
-    "CEM JOANA BENEDICTA RANGEL",
-    "CEPT PROFESSORA ZILCA LOPES DA FONTOURA",
-    "CRECHE MUNICIPAL ESTRELINHAS DO AMANHÃ",
-    "E M ESPRAIADO",
-    "E M GUARATIBA",
-    "E M PROF ATALIBA DE MACEDO DOMINGUES",
-    "EM ADEMILDA MUNIZ SIMÕES",
-    "EM ALCEBÍADES AFONSO VIANA FILHO",
-    "EM ALFREDO NICOLAU DA SILVA JUNIOR",
-    "EM AMANDA PENA DE AZEVEDO SOARES",
-    "EM AMAURY GOMES DO NASCIMENTO",
-    "EM ANÍSIO SPÍNOLA TEIXEIRA",
-    "EM ANTONIO LOPES DA FONTOURA",
-    "EM ANTONIO RUFINO DE SOUZA FILHO",
-    "EM BARRA DE ZACARIAS",
-    "EM BENVINDO TAQUES HORTA",
-    "EM BRASILINA COUTINHO",
-    "EM CARLOS MAGNO LEGENTIL DE MATTOS",
-    "EM CARLOS MANOEL COSTA LIMA",
-    "EM CLÉRIO BOECHAT DE OLIVEIRA",
-    "EM CONEGO BATALHA",
-    "EM DA MATA ATLÂNTICA",
-    "EM DE APLICAÇÃO JOSÉ PEREIRA DA SILVA",
-    "EM DE IDOSOS MILTON FELIPE DINIZ",
-    "EM DE INOÃ",
-    "EM DIRCE MARINHO GOMES",
-    "EM INDIGENA GUARANI KYRINGUE ARANDUA",
-    "EM INDIGENA GUARANI PARA POTI NHE E JA",
-    "EM JACINTHO LUIZ CAETANO",
-    "EM JOÃO MONTEIRO",
-    "EM JOÃO PEDRO MACHADO",
-    "EM JOAQUIM EUGENIO DOS SANTOS",
-    "EM LÊDA MARIA DO AMPARO LEMOS",
-    "EM LUCIMERE RODRIGUES DE MELO",
-    "EM LUCIO THOMÉ GUERRA FETEIRA",
-    "EM MARCUS VINICIUS CAETANO SANTANA",
-    "EM MARIA CRISTINA DE LIMA CORRÊA",
-    "EM MARISA LETÍCIA LULA DA SILVA",
-    "EM MARQUES DE MARICÁ",
-    "EM MAURÍCIO ANTUNES DE CARVALHO",
-    "EM MINISTRO LUIS SPARANO",
-    "EM PAULO FREIRE",
-    "EM PINDOBAS",
-    "EM PROFESORA ALCIONE SOARES RANGEL DA SILVA",
-    "EM PROFESSOR DARCY RIBEIRO",
-    "EM PROFESSOR OSWALDO LIMA RODRIGUES",
-    "EM PROFESSORA DILZA DA SILVA SA REGO",
-    "EM PROFESSORA MARÍLIA SOUSA DA SILVA NUNES",
-    "EM PROFESSORA ROMILDA DOS SANTOS",
-    "EM REGINALDO DOMINGUES DOS SANTOS",
-    "EM RETIRO",
-    "EM RITA SAMPAIO CARTAXO",
-    "EM ROMILDA NUNES LINDA",
-    "EM SÃO BENTO DA LAGOA",
-    "EM VEREADOR ANICETO ELIAS",
-    "EM VEREADOR JOÃO DA SILVA BEZERRA",
-    "EM VEREADOR LEVY CARLOS RIBEIRO",
-    "EM VEREADOR OSDEVALDO MARINS DA MATTA",
-    "EM WILSON SARDINHA DA SILVA",
-    "JIM PROFESSORA ENILZEA SABINO DA COSTA PIRES",
-    "JIM PROF BARBARA RODRIGUES DA SILVA",
-    "JIM PROFESSOR RICARDO COUTO DE AGUIAR",
-    "JIM PROFESSORA MARA REJANE GOMES BUENO",
-    "JIM PROFESSORA MARIA DE LOURDES CRUZ SILVA",
-    "JIM PROFESSORA MARIA HONORINA ZANINI BERNARDO",
-    "JIM PROFESSORA SABRINA SANTIAGO HENRIQUES",
-    "JIM RYNALDA RODRIGUES DA SILVA",
-    "JIM TRENZINHO DA ESPERANÇA",
-    "SECRETARIA DE EDUCACAO",
-    "CIEC - JOÃO VINÍCIUS FERREIRA SIMÕES",
-    "CIEC - IVANISA DO NASCIMENTO SILVA",
-    "NÃO UTILIZADO",
-    "\"JIM CONSUELO TARQUÍNIO DUQUE",
-    "(PEQUENOS NAVEGANTES)\"",
-    "CIEM COMANDANTE LUCIANO MORETTI LOPES"
+    {
+      "nome": "CAIC ELOMIR SILVA",
+      "email": "caicelomirsilva@gmail.com"
+    },
+    {
+      "nome": "CASA DA CRIANCA DE INOÃ",
+      "email": "emcasadacriacainoa@gmail.com"
+    },
+    {
+      "nome": "CASA DA CRIANÇA DE ITAIPUAÇU",
+      "email": "emcasadacriancadeitaipuacu@gmail.com"
+    },
+    {
+      "nome": "CEIM DÓ RÉ MI HAROLDO SANT ANNA SANTINI",
+      "email": "emharoldosantannasantini@gmail.com"
+    },
+    {
+      "nome": "CEIM MARILZA DA CONCEIÇÃO ROCHA MEDINA",
+      "email": "ceimmarilzadaconceicao@gmail.com"
+    },
+    {
+      "nome": "CEIM NELSON MANDELA",
+      "email": "ceimnelsonmandela01@gmail.com"
+    },
+    {
+      "nome": "CEIM PINGUINHOS DE LUZ",
+      "email": "ceimpinguinhosdeluz@gmail.com"
+    },
+    {
+      "nome": "CEIM PROFESSOR JOSÉ CARLOS DE ALMEIDA E SILVA",
+      "email": "ceimprofjosecarlos@gmail.com"
+    },
+    {
+      "nome": "CEIM PROFESSORA LUCIANA PEIXOTO DE OLIVEIRA VIANNA",
+      "email": "luciana.math@hotmail.com"
+    },
+    {
+      "nome": "CEIM PROFESSORA ONDINA DE OLIVEIRA COELHO",
+      "email": "ceimprofessoraondina@gmail.com"
+    },
+    {
+      "nome": "CEIM RECANTO DA AMIZADE",
+      "email": "ceimrecantoamizade@gmail.com"
+    },
+    {
+      "nome": "CEIM SIDNÉIA DA SILVA COSTA",
+      "email": "ceimboqueirao@gmail.com"
+    },
+    {
+      "nome": "CEIM VALÉRIA RAMOS PASSOS",
+      "email": "ceimvaleriaramospassos@gmail.com"
+    },
+    {
+      "nome": "CEM JOANA BENEDICTA RANGEL",
+      "email": "emjoanabenedicta@gmail.com"
+    },
+    {
+      "nome": "CEPT PROFESSORA ZILCA LOPES DA FONTOURA",
+      "email": "emprofzilcalopesdafontoura@gmail.com"
+    },
+    {
+      "nome": "CRECHE MUNICIPAL ESTRELINHAS DO AMANHÃ",
+      "email": "crecheestrelinhasdoamanha@gmail.com"
+    },
+    {
+      "nome": "E M ESPRAIADO",
+      "email": "emespraiado@gmail.com"
+    },
+    {
+      "nome": "E M GUARATIBA",
+      "email": "escolamunicipalizadaguaratiba@gmail.com"
+    },
+    {
+      "nome": "E M PROF ATALIBA DE MACEDO DOMINGUES",
+      "email": "emprofataliba@gmail.com"
+    },
+    {
+      "nome": "EM ADEMILDA MUNIZ SIMÕES",
+      "email": "emademildamuniz.tiadede@gmail.com"
+    },
+    {
+      "nome": "EM ALCEBÍADES AFONSO VIANA FILHO",
+      "email": "emalcebiadesafonso@gmail.com"
+    },
+    {
+      "nome": "EM ALFREDO NICOLAU DA SILVA JUNIOR",
+      "email": "emalfredonicolau@gmail.com"
+    },
+    {
+      "nome": "EM AMANDA PENA DE AZEVEDO SOARES",
+      "email": "emamandapena@gmail.com"
+    },
+    {
+      "nome": "EM AMAURY GOMES DO NASCIMENTO",
+      "email": "emamaurygomesdonascimento@gmail.com"
+    },
+    {
+      "nome": "EM ANTONIO LOPES DA FONTOURA",
+      "email": "emantoniolopesdafontoura@gmail.com"
+    },
+    {
+      "nome": "EM ANTONIO RUFINO DE SOUZA FILHO",
+      "email": "emantoniorufino2018@gmail.com"
+    },
+    {
+      "nome": "EM BARRA DE ZACARIAS",
+      "email": "embarrazacarias@gmail.com"
+    },
+    {
+      "nome": "EM BENVINDO TAQUES HORTA",
+      "email": "embenvindotaques@gmail.com"
+    },
+    {
+      "nome": "EM BRASILINA COUTINHO",
+      "email": "embrasilinacoutinho@gmail.com"
+    },
+    {
+      "nome": "EM CARLOS MAGNO LEGENTIL DE MATTOS",
+      "email": "emcarlosmagno.lm@gmail.com"
+    },
+    {
+      "nome": "EM CARLOS MANOEL COSTA LIMA",
+      "email": "emcarlosmanoel@gmail.com"
+    },
+    {
+      "nome": "EM CLÉRIO BOECHAT DE OLIVEIRA",
+      "email": "emclerioboechat@gmail.com"
+    },
+    {
+      "nome": "EM CONEGO BATALHA",
+      "email": "emconegobatalha@gmail.com"
+    },
+    {
+      "nome": "EM DA MATA ATLÂNTICA",
+      "email": "emmataatlantica02@gmail.com"
+    },
+    {
+      "nome": "EM DE INOÃ",
+      "email": "escolamunicipalizadainoa@gmail.com"
+    },
+    {
+      "nome": "EM DIRCE MARINHO GOMES",
+      "email": "emdircemarinho@gmail.com"
+    },
+    {
+      "nome": "EM INDIGENA GUARANI KYRINGUE ARANDUA",
+      "email": "escolakyringue@gmail.com"
+    },
+    {
+      "nome": "EM INDIGENA GUARANI PARA POTI NHE E JA",
+      "email": "parapoty@educ.marica.rj.gov.br"
+    },
+    {
+      "nome": "EM JACINTHO LUIZ CAETANO",
+      "email": "emjacintholuiz@gmail.com"
+    },
+    {
+      "nome": "EM JOÃO MONTEIRO",
+      "email": "emjoaomonteiro2@gmail.com"
+    },
+    {
+      "nome": "EM JOÃO PEDRO MACHADO",
+      "email": "emjoaopedromachado@gmail.com"
+    },
+    {
+      "nome": "EM JOAQUIM EUGENIO DOS SANTOS",
+      "email": "emjoaquimeugenio@gmail.com"
+    },
+    {
+      "nome": "EM LÊDA MARIA DO AMPARO LEMOS",
+      "email": "emledamariadoamparo@gmail.com"
+    },
+    {
+      "nome": "EM LUCIO THOMÉ GUERRA FETEIRA",
+      "email": "emluciothomeguerrafeteira@gmail.com"
+    },
+    {
+      "nome": "EM MARCUS VINICIUS CAETANO SANTANA",
+      "email": "emmarcusviniciuscaetano@gmail.com"
+    },
+    {
+      "nome": "EM MARIA CRISTINA DE LIMA CORRÊA",
+      "email": "emmariacristinadelima@gmail.com"
+    },
+    {
+      "nome": "EM MARISA LETÍCIA LULA DA SILVA",
+      "email": "marisaleticialula@gmail.com"
+    },
+    {
+      "nome": "EM MARQUES DE MARICÁ",
+      "email": "emmarquesdemarica02@gmail.com"
+    },
+    {
+      "nome": "EM MAURÍCIO ANTUNES DE CARVALHO",
+      "email": "emmauricioantunesdecarvalho@gmail.com"
+    },
+    {
+      "nome": "EM MINISTRO LUIS SPARANO",
+      "email": "emministrisparano@gmail.com"
+    },
+    {
+      "nome": "EM PAULO FREIRE",
+      "email": "escolamunicipalpaulofreire.pmm@gmail.com"
+    },
+    {
+      "nome": "EM PINDOBAS",
+      "email": "escolamunicipalpindobas@gmail.com"
+    },
+    {
+      "nome": "EM PROFESORA ALCIONE SOARES RANGEL DA SILVA",
+      "email": "emprofalcionee@gmail.com"
+    },
+    {
+      "nome": "EM PROFESSOR DARCY RIBEIRO",
+      "email": "emdarcyribeiro.marica@gmail.com"
+    },
+    {
+      "nome": "EM PROFESSOR OSWALDO LIMA RODRIGUES",
+      "email": "emoswaldolima@gmail.com"
+    },
+    {
+      "nome": "EM PROFESSORA DILZA DA SILVA SA REGO",
+      "email": "emdilzadasilva@gmail.com"
+    },
+    {
+      "nome": "EM REGINALDO DOMINGUES DOS SANTOS",
+      "email": "emreginaldodominguesdossantos@gmail.com"
+    },
+    {
+      "nome": "EM RETIRO",
+      "email": "escolamunicipalretiro@gmail.com"
+    },
+    {
+      "nome": "EM RITA SAMPAIO CARTAXO",
+      "email": "emritacartaxo@gmail.com"
+    },
+    {
+      "nome": "EM ROMILDA NUNES LINDA",
+      "email": "emromildanunes@gmail.com"
+    },
+    {
+      "nome": "EM SÃO BENTO DA LAGOA",
+      "email": "emsaobentodalagoa@gmail.com"
+    },
+    {
+      "nome": "EM VEREADOR ANICETO ELIAS",
+      "email": "emanicetoelias@gmail.com"
+    },
+    {
+      "nome": "EM VEREADOR JOÃO DA SILVA BEZERRA",
+      "email": "emjoaodasilvabezerra@gmail.com"
+    },
+    {
+      "nome": "EM VEREADOR LEVY CARLOS RIBEIRO",
+      "email": "emlevyribeiro@gmail.com"
+    },
+    {
+      "nome": "EM VEREADOR OSDEVALDO MARINS DA MATTA",
+      "email": "emvereadorosdevaldodamata@gmail.com"
+    },
+    {
+      "nome": "EM WILSON SARDINHA DA SILVA",
+      "email": "emwilsonsardinhadasilva@gmail.com"
+    },
+    {
+      "nome": "JIM PROFESSOR RICARDO COUTO DE AGUIAR",
+      "email": "jimprofricardocoutodeaguiar@gmail.com"
+    },
+    {
+      "nome": "JIM PROFESSORA MARA REJANE GOMES BUENO",
+      "email": "jimmararejane@gmail.com"
+    },
+    {
+      "nome": "JIM PROFESSORA MARIA DE LOURDES CRUZ SILVA",
+      "email": "jimprofmariadelourdes@gmail.com"
+    },
+    {
+      "nome": "JIM PROFESSORA MARIA HONORINA ZANINI BERNARDO",
+      "email": "jimhonorinazjim@gmail.com"
+    },
+    {
+      "nome": "JIM PROFESSORA SABRINA SANTIAGO HENRIQUES",
+      "email": "jimtiasabrina@gmail.com"
+    },
+    {
+      "nome": "JIM RYNALDA RODRIGUES DA SILVA",
+      "email": "emrynaldarodriguesdasilva@gmail.com"
+    },
+    {
+      "nome": "JIM TRENZINHO DA ESPERANÇA",
+      "email": "jimtrenzinho@gmail.com"
+    },
+    {
+      "nome": "CIEC - IVANISA DO NASCIMENTO SILVA",
+      "email": ""
+    },
+    {
+      "nome": "CIEC - JOÃO VINÍCIUS FERREIRA SIMÕES",
+      "email": "ciec.joaovinicius@educ.marica.rj.gov.br"
+    },
+    {
+      "nome": "CIEM COMANDANTE LUCIANO MORETTI LOPES",
+      "email": "emlucianomoretti@gmail.com"
+    },
+    {
+      "nome": "JIM CONSUELO TARQUÍNIO DUQUE - (PEQUENOS NAVEGANTES)",
+      "email": "jimconsuelopequenosnavegantes@gmail.com"
+    },
+    {
+      "nome": "JIM PROFESSORA ENILZEA SABINO DA COSTA PIRES",
+      "email": "jimjanelinhadosaber@gmail.com"
+    },
+    {
+      "nome": "EM ANÍSIO SPÍNOLA TEIXEIRA",
+      "email": "anisioteixeira.ceptleonel@gmail.com"
+    }
   ],
   "cargos": [
     "ADMINISTRADOR",
