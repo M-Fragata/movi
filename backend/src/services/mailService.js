@@ -17,8 +17,8 @@ export async function sendMailWithPdf(dados) {
         })
 
         return await transporter.sendMail({
-            from: `"Sistema Movi Backend" <${process.env.EMAIL_USER}>`,
-            to: 'matheusdemoraes2@gmail.com',
+            from: `"Movimentação Institucional" <${process.env.EMAIL_USER}>`,
+            to: `${dados.email}`,
             subject: `Memorando: ${dados.assunto}`,
             text: dados.corpo,
             attachments: [
