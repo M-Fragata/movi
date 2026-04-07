@@ -8,11 +8,18 @@ const __dirname = path.dirname(__filename);
 
 export async function generateMemorandoPDF(dados) {
 
-    const imagePath = path.join(__dirname, 'assets', 'prefeitura.jpg')
+    //Brasão
+    const logoPrefeituraPath = path.join(__dirname, 'assets', 'prefeitura.jpg')
 
-    const imageBase64 = fs.readFileSync(imagePath).toString('base64');
-    const imageSrc = `data:image/jpeg;base64,${imageBase64}`;
+    const logoPrefeituraBase64 = fs.readFileSync(logoPrefeituraPath).toString('base64');
+    const logoPrefeitura = `data:image/jpeg;base64,${logoPrefeituraBase64}`;
 
+    //Assinatura
+
+    const logoAssinaturaPath = path.join(__dirname, 'assets', 'assinatura.png')
+
+    const assinaturaBase64 = fs.readFileSync(logoAssinaturaPath).toString('base64');
+    const logoAssinatura = `data:image/png;base64,${assinaturaBase64}`;
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -88,7 +95,7 @@ export async function generateMemorandoPDF(dados) {
         memorandoFormat += `
             <div class="container">
                 <div class="header-container">
-                    <img class="brasao" src="${imageSrc}" alt="Brasão Prefeitura de Maricá">
+                    <img class="brasao" src="${logoPrefeitura}" alt="Brasão Prefeitura de Maricá">
                     <div class="header-text">
                         <p class="prefeitura">Prefeitura Municipal de Maricá</p>
                         <p>Secretaria de Educação</p>
@@ -121,24 +128,31 @@ export async function generateMemorandoPDF(dados) {
                 </div>
 
                 <div class="signature-block">
-                    <div class="line"></div>
-                    <div class="signature-text">
+                    ${logoAssinatura
+                ? `<img src="${logoAssinatura}" alt="Assinatura" style="width: 260px; margin-bottom: 10px;">`
+                : `
+                                <div class="line"></div>
+                                <div class="signature-text">
                         SUBSECRETÁRIA DE ASSUNTOS INSTITUCIONAIS<br>
-                        SONIA MARIA DE ANDRADE FREIRE<br>
+                        <strong>SONIA MARIA DE ANDRADE FREIRE</strong><br>
                         MATRÍCULA 1649
                     </div>
+                `
+                }
+                    
+
                 </div>
 
-                ${servidor.observacao ? `<div class="obs">Obs.: ${servidor.observacao}</div>` : ''}
+            ${servidor.observacao ? `<div class="obs">Obs.: ${servidor.observacao}</div>` : ''}
 
-            </div>
-        `
+            </div >
+            `
         if (index < ListFunc.length - 1) {
-            memorandoFormat += `<div class="page-break"></div>`
+            memorandoFormat += `< div class="page-break" ></div > `
         }
     })
 
-    memorandoFormat += `</body></html>`
+    memorandoFormat += `</body ></html > `
 
 
     await page.setContent(memorandoFormat);
