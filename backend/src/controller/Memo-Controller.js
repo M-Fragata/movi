@@ -74,7 +74,11 @@ export class MemoController {
 
                     exemplo de email de entrada para memorando: 
 
-                        Assunto (Entrada - Nome do funcionário) corpo do email (Prezados, informamos que encaminhamos o(a) funcionário (nome) (matrícula) para atuar nesta unidade escolar a partir de (data de início) OBS.: Segue o memorando em anexo) 
+                        Assunto (Entrada - Nome do funcionário) corpo do email (Prezados,
+
+                         informamos que encaminhamos o(a) funcionário (nome) (matrícula) para atuar nesta unidade escolar a partir de (data de início) atuando como (cargo) carga horaria de (carga horaria (ex: 40 HORAS SEMANAIS))
+                         
+                         OBS.: Segue o memorando em anexo) 
 
                     exemplo de email de saída para memorando: 
 
