@@ -3,8 +3,6 @@ import { generateMemorandoPDF } from './memorandoPdf.js';
 
 export async function sendMailWithPdf(dados) {
     try {
-        
-        const pdfBuffer = await generateMemorandoPDF(dados);
 
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
@@ -16,17 +14,28 @@ export async function sendMailWithPdf(dados) {
             }
         })
 
+        let attachment = []
+
+        if (dados.tipo !== 'Saída') {
+
+            const pdfBuffer = await generateMemorandoPDF(dados);
+
+            attachment = [{
+                filename: `memorando_${dados.nome}.pdf`,
+                content: pdfBuffer
+            }]
+        }
+
         return await transporter.sendMail({
             from: `"Movimentação Institucional" <${process.env.EMAIL_USER}>`,
             to: `${dados.email}`,
+            cc: [
+                "rheducacao@educ.marica.rj.gov.br",
+                "subensino2025@educ.marica.rj.gov.br"
+            ],
             subject: `Memorando: ${dados.assunto}`,
             text: dados.corpo,
-            attachments: [
-                {
-                    filename: `memorando_${dados.nome}.pdf`,
-                    content: pdfBuffer
-                }
-            ]
+            attachments: attachment
         })
 
     } catch (error) {
