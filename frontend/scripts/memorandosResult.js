@@ -222,6 +222,7 @@ const createCard = (container, title, body) => {
         assunto: body.assunto,
         corpo: body.corpo,
         email: body.email,
+        tipo: body.tipo,
         ...body.dadosServidor
       }
 
@@ -282,30 +283,28 @@ export function memorandosResult(data) {
   populateSection(data.memorandos || [], memorandosList, memorandosSection, 'Memorando')
   populateSection(data.encaminhamentos || [], encaminhamentosList, encaminhamentosSection, 'Encaminhamento')
 
+  const mailsCompletos = (data.emails || []).map((email) => {
 
-  const mailsCompletos = (data.emails || []).map((email, index) => {
+    // Função auxiliar para limpar o nome (remove espaços extras e deixa em maiúsculo)
+    const limpar = (txt) => txt?.trim().toUpperCase();
 
-    const memorandoCount = (data.memorandos || []).length
+    const nomeBusca = limpar(email.funcionario);
 
-    let dadosRelacionados = {}
-    let tipoDoc = ''
+    // Busca comparando os nomes limpos
+    let dadosServidor = (data.memorandos || []).find(m => limpar(m.nome) === nomeBusca);
+    let tipoDoc = 'Memorando';
 
-    if (index < memorandoCount) {
-      dadosRelacionados = data.memorandos[index]
-      tipoDoc = 'Memorando'
-    } else {
-      dadosRelacionados = data.encaminhamentos[index - memorandoCount]
-      tipoDoc = 'Encaminhamento'
+    if (!dadosServidor) {
+      dadosServidor = (data.encaminhamentos || []).find(e => limpar(e.nome) === nomeBusca);
+      tipoDoc = 'Encaminhamento';
     }
 
     return {
       ...email,
-      dadosServidor: dadosRelacionados,
+      dadosServidor: dadosServidor || {},
       tipoDocumento: tipoDoc
-    }
-
-
-  })
+    };
+  });
 
   populateSection(mailsCompletos || [], emailsList, emailsSection, 'E-mail')
 }
