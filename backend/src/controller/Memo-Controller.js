@@ -123,7 +123,7 @@ export class MemoController {
                             {
                                 "destino": (unidade de destino do servidor, utilize o nome da unidade de destino informado no campo destino do memorando/encaminhamento para definir o email, cruzando com a lista ${configBase.unidades[0].nome} para encontrar o email correspondente),
                                 "email": (email da unidade escolar, com base no destino cruze o nome da unidade de destino com esta lista completa de objetos: ${JSON.stringify(configBase.unidades)} e extraia o campo "email" correspondente.
-                                "tipo": "Entrada / Saída",
+                                "tipo": ("Entrada" para memorandos de entrada e "Saída" para memorandos de saída, para encaminhamentos utilize "Alteração de Carga Horária"),
                                 "funcionario": "NOME DO FUNCIONARIO",
                                 "assunto": "Entrada / Saída - NOME DO FUNCIONARIO",
                                 "corpo": "Prezados, informamos que..."
